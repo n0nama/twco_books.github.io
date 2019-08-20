@@ -1,0 +1,112 @@
+[
+    {
+      "title": "Unlocking Android",
+      "isbn": "1933988673",
+      "publisher": "Manning Publications",
+      "pageCount": 416,
+      "yearPublish": 2009,
+      "publishedDate": "01.04.2009",
+      "thumbnailUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcT57Kq-zxJqt-IU2F2rvAezQa9yNTV0b1-4LrosEnsgXmHGpXBB",
+      "authors": ["W. Frank Ableson", "Charlie Collins", "Robi Sen"]
+    },
+    {
+      "title": "Android in Action, Second Edition",
+      "isbn": "1935182722",
+      "publisher": "Manning Publications",
+      "pageCount": 592,
+      "yearPublish": 2011,
+      "publishedDate": "14.01.2011",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51JLqhpbneL._SX397_BO1,204,203,200_.jpg",
+      "authors": ["W. Frank Ableson", "Robi Sen"]
+    },
+    {
+      "title": "Specification by Example",
+      "isbn": "1617290084",
+      "publisher": "Manning Publications",
+      "pageCount": 427,
+      "yearPublish": 2011,
+      "publishedDate": "03.06.2011",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51aeT03KEdL._SX403_BO1,204,203,200_.jpg",
+      "authors": ["Gojko Adzic"]
+    },
+    {
+      "title": "Flex 3 in Action",
+      "isbn": "1933988746",
+      "publisher": "Manning Publications",
+      "pageCount": 576,
+      "yearPublish": 2009,
+      "publishedDate": "02.02.2009",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/41A4gehsSFL.jpg",
+      "authors": ["Tariq Ahmed", "Jon Hirschi", "Faisal Abid"]
+    },
+    {
+      "title": "Flex 4 in Action",
+      "isbn": "1935182420",
+      "publisher": "Manning Publications",
+      "pageCount": 600,
+      "yearPublish": 2010,
+      "publishedDate": "15.11.2010",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/41G1Rj57fJL._SX397_BO1,204,203,200_.jpg",
+      "authors": ["Tariq Ahmed", "Dan Orlando", "John C. Bland II", "Joel Hooks"]
+    },
+    {
+      "title": "Collective Intelligence in Action",
+      "isbn": "1933988312",
+      "publisher": "Manning Publications",
+      "pageCount": 425,
+      "yearPublish": 2008,
+      "publishedDate": "01.10.2008",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51PTIN8Or9L._SX397_BO1,204,203,200_.jpg",
+      "authors": ["Satnam Alag"]
+    },
+    {
+      "title": "Zend Framework in Action",
+      "isbn": "1933988320",
+      "publisher": "Manning Publications",
+      "pageCount": 432,
+      "yearPublish": 2008,
+      "publishedDate": "01.12.2008",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51E3Of8ma2L._SX258_BO1,204,203,200_.jpg",
+      "authors": ["Rob Allen", "Nick Lo", "Steven Brown"]
+    },
+    {
+      "title": "Flex on Java",
+      "isbn": "1933988797",
+      "publisher": "Manning Publications",
+      "pageCount": 265,
+      "yearPublish": 2010,
+      "publishedDate": "15.10.2010",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51WBzTuWT2L._SX258_BO1,204,203,200_.jpg",
+      "authors": ["Bernerd Allmon", "Jeremy Anderson"]
+    },
+    {
+      "title": "Griffon in Action",
+      "isbn": "1935182234",
+      "publisher": "Manning Publications",
+      "pageCount": 375,
+      "yearPublish": 2012,
+      "publishedDate": "04.06.2012",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51fOyhmPj0L._SX400_BO1,204,203,200_.jpg",
+      "authors": ["Andres Almiray", "Danno Ferrin", "James Shingler"]
+    },
+    {
+      "title": "OSGi in Depth",
+      "isbn": "193518217X",
+      "publisher": "Manning Publications",
+      "pageCount": 325,
+      "yearPublish": 2011,
+      "publishedDate": "12.11.2011",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/41O9LpYrDNL._SX397_BO1,204,203,200_.jpg",
+      "authors": ["Alexandre de Castro Alves"]
+    },
+    {
+      "title": "Flexible Rails",
+      "isbn": "1933988509",
+      "publisher": "Manning Publications",
+      "pageCount": 592,
+      "yearPublish": 2008,
+      "publishedDate": "01.01.2008",
+      "thumbnailUrl": "https://images-na.ssl-images-amazon.com/images/I/51ea8TCMSFL._SX395_BO1,204,203,200_.jpg",
+      "authors": ["Peter Armstrong"]
+    }
+]
