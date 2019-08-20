@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##### Node version v11.15.0
+##### Npm version 6.7.0
+
 ## Installation
 
 Browse project derictory in terminal and run:
@@ -10,7 +13,7 @@ Browse project derictory in terminal and run:
 
 In the project directory, you can run:
 
-##### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
