@@ -5,9 +5,9 @@ import App from './components/app';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import BookFormReducer from './reducers/BookFormReducer';
+import rootReducer from './reducers';
 
-const store = createStore(BookFormReducer);
+const store = createStore(rootReducer);
 
 ReactDOM.render(
         <Provider store={store}>

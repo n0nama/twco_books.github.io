@@ -1,5 +1,5 @@
 import books_json from '../data/books.json';
-import { ADD_BOOK } from '../actions';
+import { ADD_BOOK} from '../actions';
 
 function BookFormReducer(state = books_json, action) {
     switch(action.type){

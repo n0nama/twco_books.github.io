@@ -1,5 +1,6 @@
 [
     {
+      "id": 1,
       "title": "Unlocking Android",
       "isbn": "1933988673",
       "publisher": "Manning Publications",
@@ -10,6 +11,7 @@
       "authors": ["W. Frank Ableson", "Charlie Collins", "Robi Sen"]
     },
     {
+      "id": 2,
       "title": "Android in Action, Second Edition",
       "isbn": "1935182722",
       "publisher": "Manning Publications",
@@ -20,6 +22,7 @@
       "authors": ["W. Frank Ableson", "Robi Sen"]
     },
     {
+      "id": 3,
       "title": "Specification by Example",
       "isbn": "1617290084",
       "publisher": "Manning Publications",
@@ -30,6 +33,7 @@
       "authors": ["Gojko Adzic"]
     },
     {
+      "id": 4,
       "title": "Flex 3 in Action",
       "isbn": "1933988746",
       "publisher": "Manning Publications",
@@ -40,6 +44,7 @@
       "authors": ["Tariq Ahmed", "Jon Hirschi", "Faisal Abid"]
     },
     {
+      "id": 5,
       "title": "Flex 4 in Action",
       "isbn": "1935182420",
       "publisher": "Manning Publications",
@@ -50,6 +55,7 @@
       "authors": ["Tariq Ahmed", "Dan Orlando", "John C. Bland II", "Joel Hooks"]
     },
     {
+      "id": 6,
       "title": "Collective Intelligence in Action",
       "isbn": "1933988312",
       "publisher": "Manning Publications",
@@ -60,6 +66,7 @@
       "authors": ["Satnam Alag"]
     },
     {
+      "id": 7,
       "title": "Zend Framework in Action",
       "isbn": "1933988320",
       "publisher": "Manning Publications",
@@ -70,6 +77,7 @@
       "authors": ["Rob Allen", "Nick Lo", "Steven Brown"]
     },
     {
+      "id": 8,
       "title": "Flex on Java",
       "isbn": "1933988797",
       "publisher": "Manning Publications",
@@ -80,6 +88,7 @@
       "authors": ["Bernerd Allmon", "Jeremy Anderson"]
     },
     {
+      "id": 9,
       "title": "Griffon in Action",
       "isbn": "1935182234",
       "publisher": "Manning Publications",
@@ -90,6 +99,7 @@
       "authors": ["Andres Almiray", "Danno Ferrin", "James Shingler"]
     },
     {
+      "id": 10,
       "title": "OSGi in Depth",
       "isbn": "193518217X",
       "publisher": "Manning Publications",
@@ -100,6 +110,7 @@
       "authors": ["Alexandre de Castro Alves"]
     },
     {
+      "id": 11,
       "title": "Flexible Rails",
       "isbn": "1933988509",
       "publisher": "Manning Publications",

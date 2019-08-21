@@ -74,6 +74,7 @@ class BookForm extends Component {
     }
     render () {
         //For yearPublish validation
+        console.log('Props' , this.props)
         let current_year = new Date().getFullYear().toString().split("");
         let yearPublish_valid = "^(1[8-9][0-9][0-9]|200[0-9]|[0-"+current_year[0]+"][0-"+current_year[1]+"][0-"+current_year[2]+"][0-"+current_year[3]+"])$";
         const errorLabel = <Label basic color="red" pointing/>
@@ -225,13 +226,13 @@ class BookForm extends Component {
 
 function mapStateToProps(state){
     return {
-        books : state
+        books : state.BookShelfReducer
     };
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({addNewBook}, dispatch);
+
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookForm);
+export default connect(mapStateToProps,mapDispatchToProps)(BookForm);
