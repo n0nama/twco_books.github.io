@@ -18,6 +18,15 @@ addValidationRule('isCorrectDate', function(values, value) {
         }
 });
 
+addValidationRule('isCorrectYear', function(values, value) {
+    let lowYear = 1800
+    let currentYear = new Date().getFullYear();
+    let inputedYear = parseInt(value)
+    if ((inputedYear>=lowYear&&inputedYear<=currentYear)|| inputedYear.toString().length >= 0){
+        return true
+    }
+});
+
 class BookForm extends Component {
     state = { modal: false,
         preview : '',
@@ -32,14 +41,10 @@ class BookForm extends Component {
         let check = props.books.editedBook ? true : false
         if (check !== state.formEditing) {
             return {
-                formEditing: check,
-                formWasSubmitted : false
+                formEditing: check
             }
         }
         return null;
-    }
-    formEdit = e => {
-        this.refs.bookForm.reset(this.props.books.editedBook)
     }
     show = (e) => {
         e.preventDefault()//To prevent premature form validation
@@ -87,13 +92,17 @@ class BookForm extends Component {
     }
     submitNewBook = e => {
         //Prepare new id
-        let maxid = 0;
-        this.props.books.data.map(b => {
-            if (b.id > maxid) {
-                return maxid = b.id
-            };
-        });
-        e.id = maxid+1
+        if (!this.state.formEditing) {
+            let maxid = 0;
+            this.props.books.data.map(b => {
+                if (b.id > maxid) {
+                    return maxid = b.id
+                };
+            });
+            e.id = maxid+1
+        } else {
+            e.id = this.props.books.editedBook.id
+        }
         let new_book = e
         this.props.addNewBook(new_book)
         this.refs.bookForm.reset()
@@ -106,8 +115,6 @@ class BookForm extends Component {
     }
     render () {
         //For yearPublish validation
-        let current_year = new Date().getFullYear().toString().split("");
-        let yearPublish_valid = "^(1[8-9][0-9][0-9]|200[0-9]|[0-"+current_year[0]+"][0-"+current_year[1]+"][0-"+current_year[2]+"][0-"+current_year[3]+"])$";
         const errorLabel = <Label basic color="red" pointing/>
         return (
             <Grid.Row>
@@ -180,9 +187,8 @@ class BookForm extends Component {
                             placeholder="Например, 2003"
                             name="yearPublish"
                             width={5}
-                            validations={{matchRegexp : XRegExp(yearPublish_valid),
-                                minLength : 0}}
-                            validationErrors={{ matchRegexp: 'Неправильный формат даты.'}}
+                            validations="isCorrectYear"
+                            validationError="Неправильный формат даты."
                             errorLabel={ errorLabel }
                         />
                         <Form.Input
@@ -247,7 +253,7 @@ class BookForm extends Component {
                     bordered
                     rounded
                     onError={(e)=>{e.target.src="./assets/imgs/default.png"}}
-                    src={ this.state.preview ? this.state.preview : "./assets/imgs/default.png"}/>
+                    src={ this.props.books.editedBook ? this.props.books.editedBook.thumbnailUrl : this.state.preview ? this.state.preview : "./assets/imgs/default.png"}/>
             </Grid.Column>
         </Grid.Row>
         )
