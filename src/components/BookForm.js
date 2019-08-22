@@ -21,15 +21,34 @@ addValidationRule('isCorrectDate', function(values, value) {
 class BookForm extends Component {
     state = { modal: false,
         preview : '',
-        authors : this.authorsPreSet(),
-        formWasSubmitted : false
+        authors : this.authorsPreSet (),
+        formWasSubmitted : false,
+        formEditing : false
+    }
+    static getDerivedStateFromProps(props, state) {
+        // Any time the current user changes,
+        // Reset any parts of state that are tied to that user.
+        // In this simple example, that's just the email.
+        let check = props.books.editedBook ? true : false
+        if (check !== state.formEditing) {
+            return {
+                formEditing: check,
+                formWasSubmitted : false
+            }
+        }
+        return null;
+    }
+    formEdit = e => {
+        this.refs.bookForm.reset(this.props.books.editedBook)
     }
     show = (e) => {
         e.preventDefault()//To prevent premature form validation
         this.setState({ modal: true })
     }
     close = () => this.setState({ modal: false })
-    imagePreview = link => this.setState({preview : link.target.value })
+    imagePreview = link => { 
+        this.setState({preview : link.target.value })
+    }
     authorsPreSet () {
             /* Here I prepare list of all authors to render it in select.
            I grub all books, then map all authors from each book.
@@ -37,7 +56,7 @@ class BookForm extends Component {
            After that I remove all duplicates using Set, and then
            I map current array to use it with select.
         */
-        let allAuthors = this.props.books.map(book => {
+        let allAuthors = this.props.books.data.map(book => {
             return book.authors            
         });
         let preAuth = [...new Set(allAuthors.flat(1))].filter( el => el.length > 0); //clear empty elements if exists
@@ -67,14 +86,26 @@ class BookForm extends Component {
         }
     }
     submitNewBook = e => {
-        let new_book =  e
+        //Prepare new id
+        let maxid = 0;
+        this.props.books.data.map(b => {
+            if (b.id > maxid) {
+                return maxid = b.id
+            };
+        });
+        e.id = maxid+1
+        let new_book = e
         this.props.addNewBook(new_book)
-        this.bookForm.reset()
+        this.refs.bookForm.reset()
         this.setState({formWasSubmitted : true})//To clear selectedAuthors list
+    }
+    componentDidUpdate(prevProps){
+        if ( prevProps.books.editedBook !== this.props.books.editedBook) {
+            this.refs.bookForm.reset(this.props.books.editedBook); //example calling redux action
+        }
     }
     render () {
         //For yearPublish validation
-        console.log('Props' , this.props)
         let current_year = new Date().getFullYear().toString().split("");
         let yearPublish_valid = "^(1[8-9][0-9][0-9]|200[0-9]|[0-"+current_year[0]+"][0-"+current_year[1]+"][0-"+current_year[2]+"][0-"+current_year[3]+"])$";
         const errorLabel = <Label basic color="red" pointing/>
@@ -83,7 +114,7 @@ class BookForm extends Component {
             <Grid.Column mobile={16} largeScreen={10} table={10}>
             <Form
                 onValidSubmit={this.submitNewBook}
-                ref={(ref) => this.bookForm = ref}
+                ref="bookForm"
                 className="raised segment"
             >
                 <Form.Field>
@@ -216,7 +247,7 @@ class BookForm extends Component {
                     bordered
                     rounded
                     onError={(e)=>{e.target.src="./assets/imgs/default.png"}}
-                    src={this.state.preview ? this.state.preview : "./assets/imgs/default.png"}/>
+                    src={ this.state.preview ? this.state.preview : "./assets/imgs/default.png"}/>
             </Grid.Column>
         </Grid.Row>
         )
@@ -226,7 +257,7 @@ class BookForm extends Component {
 
 function mapStateToProps(state){
     return {
-        books : state.BookShelfReducer
+        books : state.BookFormReducer
     };
 }
 

@@ -33,7 +33,7 @@ class BookShelf extends Component {
             </Grid.Column>
             <Grid.Column width={16}>
                 <Card.Group stackable itemsPerRow={3}>
-                    {this.props.books.map( (book) => {
+                    {this.props.books.data.map( (book) => {
                         return (
                             <Card key={book.id}>
                                 <Image src={book.thumbnailUrl ? book.thumbnailUrl : "./assets/imgs/default.png"} wrapped ui={false} />
@@ -87,7 +87,7 @@ class BookShelf extends Component {
 
 function mapStateToProps(state){
     return {
-        books : state.BookShelfReducer
+        books : state.BookFormReducer
     };
 }
 
