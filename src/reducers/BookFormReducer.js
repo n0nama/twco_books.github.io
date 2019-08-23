@@ -2,8 +2,8 @@ import books_json from '../data/books.json';
 import { ADD_BOOK, EDIT_BOOK, DELETE_BOOK, SORT_BOOKS } from '../actions';
 
 
-function BookFormReducer(state = books_json, action) {
-    let data = state
+function books(state = books_json, action) {
+    let data = state.data ? state.data : state
     let editedBook = null
     switch(action.type){
         case ADD_BOOK:
@@ -50,4 +50,4 @@ function BookFormReducer(state = books_json, action) {
     }
 }
 
-export default BookFormReducer;
+export default books;

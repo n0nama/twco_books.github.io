@@ -8,17 +8,10 @@ import { save, load } from "redux-localstorage-simple"
 
 import rootReducer from './reducers';
 
-// const createStoreWithMiddleware 
-//     = applyMiddleware(
-//         save() // Saving done here
-//     )(createStore)
+const createStoreWithMiddleware = applyMiddleware(save())(createStore)
+const store = createStoreWithMiddleware(rootReducer,load())
 
-// const store = createStoreWithMiddleware(
-//         rootReducer,    
-//         load() // Loading done here
-//     )
-
-const store = createStore(rootReducer);
+//const store = createStore(rootReducer);
 
 ReactDOM.render(
         <Provider store={store}>

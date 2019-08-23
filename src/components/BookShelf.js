@@ -23,7 +23,6 @@ class BookShelf extends Component {
         }
     }
     render () {
-        console.log('Props' , this.props)
         return (
             <Grid.Row>
             <Grid.Column width={16}>
@@ -75,16 +74,17 @@ class BookShelf extends Component {
                                     {book.isbn ? <p><b>ISBN: </b> {book.isbn}</p> : null}
                                 </Card.Description>
                                 </Card.Content>
+                                {this.state.showEdit ? 
                                 <Card.Content extra>
-                                    {this.state.showEdit ? 
+                                    
                                     <Button basic icon color='green' onClick={() => this.editBookHandler(book.id)}>
                                         <Icon name="pencil"></Icon>
                                     </Button>
-                                    : null }
                                     <Button basic icon color='red' onClick={() => this.show(book.id)}>
                                         <Icon name="close"></Icon>
                                     </Button>
                                 </Card.Content>
+                                : null }
                             </Card>
                         )
                     })}
@@ -107,7 +107,7 @@ class BookShelf extends Component {
 
 function mapStateToProps(state){
     return {
-        books : state.BookFormReducer
+        books : state.books
     };
 }
 

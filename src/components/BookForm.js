@@ -22,26 +22,42 @@ addValidationRule('isCorrectYear', function(values, value) {
     let lowYear = 1800
     let currentYear = new Date().getFullYear();
     let inputedYear = parseInt(value)
-    if ((inputedYear>=lowYear&&inputedYear<=currentYear)|| inputedYear.toString().length >= 0){
+    if (value && value.length > 0){
+        if ((inputedYear>=lowYear&&inputedYear<=currentYear)){
+            return true
+        } else {
+            return false
+        } 
+    } else {
         return true
     }
+
 });
+
+function maxidHelper(data){
+    let maxid = 0;
+    data.map(b => {
+        if (b.id > maxid) {
+            return maxid = b.id
+        };
+        return null;
+    });
+    return maxid;
+}
 
 class BookForm extends Component {
     state = { modal: false,
         preview : '',
         authors : this.authorsPreSet (),
         formWasSubmitted : false,
-        formEditing : false
+        formEditing : false,
+        newAuthAdded : false
     }
     static getDerivedStateFromProps(props, state) {
-        // Any time the current user changes,
-        // Reset any parts of state that are tied to that user.
-        // In this simple example, that's just the email.
         let check = props.books.editedBook ? true : false
         if (check !== state.formEditing) {
             return {
-                formEditing: check
+                formEditing: check,
             }
         }
         return null;
@@ -50,8 +66,10 @@ class BookForm extends Component {
         e.preventDefault()//To prevent premature form validation
         this.setState({ modal: true })
     }
-    close = () => this.setState({ modal: false })
-    imagePreview = link => { 
+    close = () => { 
+        this.setState({ modal: false }) 
+    }
+    imagePreview = (link) => { 
         this.setState({preview : link.target.value })
     }
     authorsPreSet () {
@@ -72,7 +90,7 @@ class BookForm extends Component {
         });
         return options
     }
-    authorsListChange = (e, { value }) => {
+    authorsListChange =  (e, { value }) => {
         this.setState({ selectedAuthors: value, formWasSubmitted : false })
     }
     addNewAuthor = (e) => {
@@ -80,25 +98,23 @@ class BookForm extends Component {
         let newAddition = { key : newAuthName, text : newAuthName, value : newAuthName }
         let updatedAuthors = [newAddition, ...this.state.authors]
         //This statement needs to fix custom validation behavior
-        if (this.state.formWasSubmitted) {
+        if (this.state.formWasSubmitted && !this.state.formEditing) {
             let selectedAuthors = []
+            if(this.state.newAuthAdded){
+                selectedAuthors = this.state.selectedAuthors
+            }
             let updateSelectedAuthors = selectedAuthors.concat(newAuthName)
-            this.setState({ modal: false, authors : updatedAuthors, selectedAuthors : updateSelectedAuthors })
+            this.setState({ modal: false, authors : updatedAuthors, selectedAuthors : updateSelectedAuthors, newAuthAdded : true })
         } else {
             let selectedAuthors = this.state.selectedAuthors === undefined ? [] : this.state.selectedAuthors
             let updateSelectedAuthors = selectedAuthors.concat(newAuthName)
             this.setState({ modal: false, authors : updatedAuthors, selectedAuthors : updateSelectedAuthors })
         }
     }
-    submitNewBook = e => {
+    submitNewBook = (e) => {
         //Prepare new id
         if (!this.state.formEditing) {
-            let maxid = 0;
-            this.props.books.data.map(b => {
-                if (b.id > maxid) {
-                    return maxid = b.id
-                };
-            });
+            let maxid = maxidHelper(this.props.books.data)
             e.id = maxid+1
         } else {
             e.id = this.props.books.editedBook.id
@@ -106,15 +122,20 @@ class BookForm extends Component {
         let new_book = e
         this.props.addNewBook(new_book)
         this.refs.bookForm.reset()
-        this.setState({formWasSubmitted : true})//To clear selectedAuthors list
+        this.setState({formWasSubmitted : true, preview : '', newAuthAdded : false})//To clear selectedAuthors list
     }
     componentDidUpdate(prevProps){
         if ( prevProps.books.editedBook !== this.props.books.editedBook) {
-            this.refs.bookForm.reset(this.props.books.editedBook); //example calling redux action
+            if(this.props.books.editedBook){
+                this.setState({selectedAuthors : this.props.books.editedBook.authors})
+            }
+            this.refs.bookForm.reset(this.props.books.editedBook);
+            this.setState({formWasSubmitted : true})
         }
     }
     render () {
         //For yearPublish validation
+        console.log('State', this.state)
         const errorLabel = <Label basic color="red" pointing/>
         return (
             <Grid.Row>
@@ -253,7 +274,7 @@ class BookForm extends Component {
                     bordered
                     rounded
                     onError={(e)=>{e.target.src="./assets/imgs/default.png"}}
-                    src={ this.props.books.editedBook ? this.props.books.editedBook.thumbnailUrl : this.state.preview ? this.state.preview : "./assets/imgs/default.png"}/>
+                    src={ this.props.books.editedBook && this.props.books.editedBook.thumbnailUrl !== undefined ? this.props.books.editedBook.thumbnailUrl : this.state.preview ? this.state.preview : "./assets/imgs/default.png"}/>
             </Grid.Column>
         </Grid.Row>
         )
@@ -263,7 +284,7 @@ class BookForm extends Component {
 
 function mapStateToProps(state){
     return {
-        books : state.BookFormReducer
+        books : state.books
     };
 }
 

@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-import BookFormReducer from './BookFormReducer';
+import books from './BookFormReducer';
 //import BookShelfReducer from './BookShelfReducer';
 
 const rootReducer = combineReducers({
-
-    BookFormReducer
+    books
 })
 
 export default rootReducer;
